@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import type { ReactNode } from "react";
 import { Geist, Geist_Mono, Unbounded } from "next/font/google";
 
 import { Cursor } from "@/components/motion/cursor";
@@ -38,7 +39,7 @@ export const viewport: Viewport = {
   themeColor: "#060607",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en" className={`${unbounded.variable} ${geist.variable} ${geistMono.variable}`}>
       <body>
