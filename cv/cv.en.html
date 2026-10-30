@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Magnus Kaur, CV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600&family=Geist+Mono&family=Unbounded:wght@700&display=block"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="cv.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="top">
+        <div>
+          <h1>Magnus Kaur</h1>
+          <p class="role">Junior full-stack developer in Helsinki. <span class="now">Available now</span></p>
+        </div>
+        <ul class="contact">
+          <li><a href="mailto:magnuskaur.dev@gmail.com">magnuskaur.dev@gmail.com</a></li>
+          <li>{{PHONE}}</li>
+          <li><a href="https://{{SITE}}">{{SITE}}</a></li>
+          <li><a href="https://github.com/mgndxb">github.com/mgndxb</a></li>
+        </ul>
+      </header>
+
+      <p class="summary">
+        I build booking, payment and back-office systems that real businesses run on: seven products since 2024, six of
+        them live and three taking real card payments. Before that I ran a field-sales team of about 20 as COO, and built
+        the sales system that team still uses every day. I want a junior role on a team where I can learn from senior
+        engineers and grow fast.
+      </p>
+
+      <section class="row">
+        <h2>Experience</h2>
+        <div>
+          <article class="job">
+            <div class="job-head">
+              <h3>Independent developer</h3>
+              <span class="where">Helsinki</span>
+              <span class="when">2024–now</span>
+            </div>
+            <p class="lead">Products I designed, built and shipped, for clients and for myself.</p>
+            <ul class="items">
+              <li class="item">
+                <div class="item-head">
+                  <b>FlagSales</b><span class="kind">Sales system for a field-sales team, paid client</span>
+                </div>
+                <p>
+                  Replaced counting sales by hand from a WhatsApp chat. Sellers sign in with a name and PIN and log each
+                  sale from a product list, and the system counts who sold what, and when. About 20 sellers have used it
+                  every day for over a year. Now rebuilding it from scratch after auditing my first version: roles
+                  enforced in PostgreSQL, 707 tests against a real database.
+                </p>
+              </li>
+              <li class="item">
+                <div class="item-head">
+                  <b>Defined PMU</b><span class="kind">Booking platform and studio app</span>
+                  <a class="url" href="https://definedpmu.com">definedpmu.com</a>
+                </div>
+                <p>
+                  A permanent makeup studio in Helsinki runs its whole business on it. Live availability, Stripe deposits
+                  with signed webhooks and automatic refunds, and double bookings blocked by PostgreSQL constraints.
+                  1,568 automated checks across ten test suites.
+                </p>
+              </li>
+              <li class="item">
+                <div class="item-head">
+                  <b>Coded for Beauty</b><span class="kind">My own product</span>
+                  <a class="url" href="https://codedforbeauty.com">codedforbeauty.com</a>
+                </div>
+                <p>
+                  Website, online booking and a studio app for beauty studios, sold for £99 a month and built on the
+                  Defined PMU stack. Brow Ink (browink.co.uk), a paying client in Nottingham, UK, runs on it.
+                </p>
+              </li>
+              <li class="item">
+                <div class="item-head">
+                  <b>Lumos Energia</b><span class="kind">Booking and scheduling, paid client</span>
+                  <a class="url" href="https://lumosenergia.fi">lumosenergia.fi</a>
+                </div>
+                <p>
+                  Customer booking and an internal scheduling calendar for a solar and energy installer, with overlap
+                  prevention on every slot.
+                </p>
+              </li>
+              <li class="item">
+                <p>
+                  <b>Also:</b> CreatorMission (creatormission.com), a browser video editor I built to practise and
+                  shipped. Booking Conflict Engine, public code where PostgreSQL makes overlapping bookings impossible
+                  (github.com/mgndxb/booking-conflict-engine).
+                </p>
+              </li>
+            </ul>
+          </article>
+
+          <article class="job">
+            <div class="job-head">
+              <h3>Flagsales Consulting Oy</h3>
+              <span class="where">Helsinki</span>
+              <span class="when">09/2025–10/2026</span>
+            </div>
+            <ul class="roles items">
+              <li>
+                <span class="title">COO</span> <span class="dates">03/2026–10/2026</span><br />
+                Ran day-to-day operations for a field-sales team of about 20: scheduling, recruiting, interviews, hiring
+                and staff issues. Building the team's sales system (FlagSales, above) led to this promotion.
+              </li>
+              <li>
+                <span class="title">Team lead</span> <span class="dates">01/2026–02/2026</span> and
+                <span class="title">Seller</span> <span class="dates">09/2025–12/2025</span><br />
+                Sold Helen electricity contracts at stands around Helsinki and was promoted on results.
+              </li>
+            </ul>
+          </article>
+
+          <article class="job">
+            <div class="job-head">
+              <h3>Earlier work</h3>
+            </div>
+            <div class="earlier items">
+              <span><b>PostNord Oy</b>, B2B delivery driver</span><span class="when">04/2025–09/2025</span>
+              <span><b>K-Auto Herttoniemi</b>, vehicle mechanic</span><span class="when">2022–2024</span>
+              <span><b>Kilon Osuus-auto Oy</b>, delivery driver</span><span class="when">2021–2022</span>
+              <span><b>UPS Finland</b>, delivery driver</span><span class="when">2019–2020</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="row">
+        <h2>Skills</h2>
+        <dl class="skills">
+          <dt>Every day</dt>
+          <dd>TypeScript, React, Next.js, PostgreSQL, Supabase, Tailwind CSS, Git and GitHub</dd>
+          <dt>Often</dt>
+          <dd>Stripe, Node.js, Vercel, Zod, Resend, Vitest</dd>
+          <dt>How I build</dt>
+          <dd>
+            AI coding agents (Claude Code) write much of the code. The requirements, data model, business rules, review,
+            tests and production checks are mine.
+          </dd>
+        </dl>
+      </section>
+
+      <section class="row">
+        <h2>Education</h2>
+        <div class="facts">
+          <span><b>Vantaa Vocational College Varia</b>, vehicle mechanic qualification</span>
+          <span class="when">2016–2019</span>
+        </div>
+      </section>
+
+      <section class="row">
+        <h2>Languages</h2>
+        <p>Finnish (native), English (fluent)</p>
+      </section>
+    </main>
+  </body>
+</html>

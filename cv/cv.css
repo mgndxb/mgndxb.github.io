@@ -1,0 +1,237 @@
+/*
+ * One A4 page, printed to PDF by build.sh. Real text in reading order, so
+ * applicant tracking systems can parse it. Same type as the portfolio:
+ * Unbounded for the name, Geist for text, Geist Mono for dates and links.
+ */
+@page {
+  size: A4;
+  margin: 0;
+}
+
+:root {
+  --ink: #16161a;
+  --body: #34343a;
+  --muted: #6f6f76;
+  --rule: #e4e2dc;
+  --live: #0b8a52;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  background: #fff;
+  color: var(--body);
+  font: 400 8.6pt/1.42 "Geist", system-ui, sans-serif;
+  font-feature-settings: "ss01";
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+b,
+strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+ul {
+  list-style: none;
+}
+
+.page {
+  width: 210mm;
+  height: 297mm;
+  padding: 13mm 15mm 11mm;
+  overflow: hidden;
+}
+
+/* Header */
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 8mm;
+  padding-bottom: 5mm;
+  border-bottom: 1.4pt solid var(--ink);
+}
+
+h1 {
+  font: 700 27pt/0.95 "Unbounded", sans-serif;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+}
+
+.role {
+  margin-top: 3mm;
+  font-size: 10.2pt;
+  color: var(--ink);
+}
+
+.now {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.6mm;
+  margin-left: 1.5mm;
+  color: var(--live);
+  font-weight: 600;
+}
+
+.now::before {
+  content: "";
+  width: 1.8mm;
+  height: 1.8mm;
+  border-radius: 50%;
+  background: var(--live);
+}
+
+.contact {
+  font: 400 7.9pt/1.6 "Geist Mono", monospace;
+  text-align: right;
+  color: var(--ink);
+}
+
+.summary {
+  margin: 4.5mm 0 1mm;
+  font-size: 9.5pt;
+  line-height: 1.5;
+  color: var(--ink);
+  max-width: 170mm;
+}
+
+/* Sections: a narrow label column, then the content */
+
+.row {
+  display: grid;
+  grid-template-columns: 27mm 1fr;
+  gap: 0 4mm;
+  padding: 3.3mm 0;
+  border-top: 0.6pt solid var(--rule);
+}
+
+.row:first-of-type {
+  border-top: 0;
+}
+
+h2 {
+  font-size: 8.6pt;
+  font-weight: 600;
+  color: var(--ink);
+  padding-top: 0.4mm;
+}
+
+.job + .job {
+  margin-top: 3.4mm;
+}
+
+.job-head {
+  display: flex;
+  align-items: baseline;
+  gap: 2mm;
+}
+
+h3 {
+  font-size: 9.6pt;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.where {
+  color: var(--muted);
+}
+
+.when,
+.url {
+  font: 400 7.6pt/1.4 "Geist Mono", monospace;
+  color: var(--muted);
+}
+
+.when {
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.lead {
+  margin-top: 0.6mm;
+  color: var(--muted);
+}
+
+.items {
+  margin-top: 1.8mm;
+}
+
+.items > li + li {
+  margin-top: 1.9mm;
+}
+
+.item-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 2mm;
+}
+
+.item-head .kind {
+  color: var(--muted);
+}
+
+.item-head .url {
+  margin-left: auto;
+}
+
+.item p {
+  margin-top: 0.3mm;
+}
+
+.roles > li + li {
+  margin-top: 1mm;
+}
+
+.roles .title {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.roles .dates {
+  font: 400 7.6pt "Geist Mono", monospace;
+  color: var(--muted);
+}
+
+.earlier {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.6mm 4mm;
+}
+
+.earlier .when,
+.facts .when {
+  margin-left: 0;
+  justify-self: end;
+}
+
+.skills {
+  display: grid;
+  grid-template-columns: 19mm 1fr;
+  gap: 1mm 3mm;
+}
+
+.skills dt {
+  color: var(--muted);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.6mm 4mm;
+}

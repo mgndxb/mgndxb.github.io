@@ -18,6 +18,8 @@ export const site = {
   workModes: "On-site, hybrid or remote",
   languages: "English, Finnish",
   now: "Rebuilding FlagSales from scratch",
+  /** Printed from cv/ with `npm run cv` (the public copies, without a phone number). */
+  cv: { en: "/magnus-kaur-cv.pdf", fi: "/magnus-kaur-cv-suomi.pdf" },
   sourceRepo: "https://github.com/mgndxb/mgndxb.github.io",
   caseStudy: "https://github.com/mgndxb/defined-pmu-case-study",
   productionLessons:

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="fi">
+  <head>
+    <meta charset="utf-8" />
+    <title>Magnus Kaur, CV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600&family=Geist+Mono&family=Unbounded:wght@700&display=block"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="cv.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="top">
+        <div>
+          <h1>Magnus Kaur</h1>
+          <p class="role">Junior full-stack-kehittäjä, Helsinki. <span class="now">Voin aloittaa heti</span></p>
+        </div>
+        <ul class="contact">
+          <li><a href="mailto:magnuskaur.dev@gmail.com">magnuskaur.dev@gmail.com</a></li>
+          <li>{{PHONE}}</li>
+          <li><a href="https://{{SITE}}">{{SITE}}</a></li>
+          <li><a href="https://github.com/mgndxb">github.com/mgndxb</a></li>
+        </ul>
+      </header>
+
+      <p class="summary">
+        Rakennan ajanvaraus-, maksu- ja taustajärjestelmiä, joiden varassa oikeat yritykset toimivat: seitsemän tuotetta
+        vuodesta 2024, joista kuusi on tuotannossa ja kolme ottaa vastaan oikeita korttimaksuja. Sitä ennen johdin noin
+        20 hengen kenttämyyntitiimiä COO:na ja rakensin myyntijärjestelmän, jota tiimi käyttää yhä päivittäin. Haen
+        junior-kehittäjän roolia tiimistä, jossa voin oppia kokeneilta kehittäjiltä ja kasvaa nopeasti.
+      </p>
+
+      <section class="row">
+        <h2>Työkokemus</h2>
+        <div>
+          <article class="job">
+            <div class="job-head">
+              <h3>Itsenäinen kehittäjä</h3>
+              <span class="where">Helsinki</span>
+              <span class="when">2024–</span>
+            </div>
+            <p class="lead">Tuotteita, jotka olen suunnitellut, rakentanut ja julkaissut asiakkaille ja itselleni.</p>
+            <ul class="items">
+              <li class="item">
+                <div class="item-head">
+                  <b>FlagSales</b><span class="kind">Myyntijärjestelmä kenttämyyntitiimille, maksava asiakas</span>
+                </div>
+                <p>
+                  Korvasi myyntien laskemisen käsin WhatsApp-ryhmästä. Myyjät kirjautuvat nimellä ja PIN-koodilla ja
+                  kirjaavat myynnin tuotelistasta, ja järjestelmä laskee kuka myi mitä ja milloin. Noin 20 myyjää on
+                  käyttänyt sitä päivittäin yli vuoden. Rakennan sitä nyt alusta uudelleen auditoituani ensimmäisen
+                  versioni: roolit valvotaan PostgreSQL:ssä, 707 testiä oikeaa tietokantaa vasten.
+                </p>
+              </li>
+              <li class="item">
+                <div class="item-head">
+                  <b>Defined PMU</b><span class="kind">Ajanvarausalusta ja studiosovellus</span>
+                  <a class="url" href="https://definedpmu.com">definedpmu.com</a>
+                </div>
+                <p>
+                  Helsinkiläinen kestopigmentointistudio pyörittää koko liiketoimintaansa sillä. Reaaliaikainen
+                  saatavuus, Stripe-ennakkomaksut allekirjoitetuilla webhookeilla ja automaattisilla hyvityksillä, ja
+                  PostgreSQL-rajoitteet estävät päällekkäiset varaukset. 1 568 automaattista tarkistusta kymmenessä
+                  testikokonaisuudessa.
+                </p>
+              </li>
+              <li class="item">
+                <div class="item-head">
+                  <b>Coded for Beauty</b><span class="kind">Oma tuotteeni</span>
+                  <a class="url" href="https://codedforbeauty.com">codedforbeauty.com</a>
+                </div>
+                <p>
+                  Verkkosivut, ajanvaraus ja studiosovellus kauneusstudioille 99 punnalla kuukaudessa, rakennettu Defined
+                  PMU:n pohjalle. Sillä toimii Brow Ink (browink.co.uk), maksava asiakas Nottinghamissa, Isossa-Britanniassa.
+                </p>
+              </li>
+              <li class="item">
+                <div class="item-head">
+                  <b>Lumos Energia</b><span class="kind">Ajanvaraus ja aikataulutus, maksava asiakas</span>
+                  <a class="url" href="https://lumosenergia.fi">lumosenergia.fi</a>
+                </div>
+                <p>
+                  Asiakkaiden ajanvaraus ja sisäinen aikataulukalenteri aurinko- ja energia-asentajalle. Päällekkäiset
+                  varaukset estetään jokaisessa ajassa.
+                </p>
+              </li>
+              <li class="item">
+                <p>
+                  <b>Lisäksi:</b> CreatorMission (creatormission.com), selainpohjainen videoeditori, jonka rakensin
+                  harjoitellakseni ja julkaisin. Booking Conflict Engine, julkinen koodiesimerkki, jossa PostgreSQL tekee
+                  päällekkäiset varaukset mahdottomiksi (github.com/mgndxb/booking-conflict-engine).
+                </p>
+              </li>
+            </ul>
+          </article>
+
+          <article class="job">
+            <div class="job-head">
+              <h3>Flagsales Consulting Oy</h3>
+              <span class="where">Helsinki</span>
+              <span class="when">09/2025–10/2026</span>
+            </div>
+            <ul class="roles items">
+              <li>
+                <span class="title">COO</span> <span class="dates">03/2026–10/2026</span><br />
+                Vastasin noin 20 hengen kenttämyyntitiimin päivittäisestä toiminnasta: työvuorosuunnittelu, rekrytointi,
+                haastattelut, palkkaaminen ja henkilöstöasiat. Tiimin myyntijärjestelmän (FlagSales, yllä) rakentaminen
+                johti tähän ylennykseen.
+              </li>
+              <li>
+                <span class="title">Tiiminvetäjä</span> <span class="dates">01/2026–02/2026</span> ja
+                <span class="title">myyjä</span> <span class="dates">09/2025–12/2025</span><br />
+                Myin Helenin sähkösopimuksia ständeillä eri puolilla Helsinkiä. Hyvät tulokset johtivat ylennykseen.
+              </li>
+            </ul>
+          </article>
+
+          <article class="job">
+            <div class="job-head">
+              <h3>Aiempi työkokemus</h3>
+            </div>
+            <div class="earlier items">
+              <span><b>PostNord Oy</b>, pakettiautonkuljettaja, B2B-jakelu</span><span class="when">04/2025–09/2025</span>
+              <span><b>K-Auto Herttoniemi</b>, ajoneuvoasentaja</span><span class="when">2022–2024</span>
+              <span><b>Kilon Osuus-auto Oy</b>, pakettiautonkuljettaja</span><span class="when">2021–2022</span>
+              <span><b>UPS Finland</b>, pakettiautonkuljettaja</span><span class="when">2019–2020</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="row">
+        <h2>Osaaminen</h2>
+        <dl class="skills">
+          <dt>Päivittäin</dt>
+          <dd>TypeScript, React, Next.js, PostgreSQL, Supabase, Tailwind CSS, Git ja GitHub</dd>
+          <dt>Usein</dt>
+          <dd>Stripe, Node.js, Vercel, Zod, Resend, Vitest</dd>
+          <dt>Työtapa</dt>
+          <dd>
+            Tekoälyagentit (Claude Code) kirjoittavat suuren osan koodista. Vaatimukset, tietomalli, liiketoimintasäännöt,
+            katselmointi, testit ja tuotantotarkistukset ovat minun.
+          </dd>
+        </dl>
+      </section>
+
+      <section class="row">
+        <h2>Koulutus</h2>
+        <div class="facts">
+          <span><b>Vantaan ammattiopisto Varia</b>, ajoneuvoasentaja</span>
+          <span class="when">2016–2019</span>
+        </div>
+      </section>
+
+      <section class="row">
+        <h2>Kielitaito</h2>
+        <p>Suomi (äidinkieli), englanti (erinomainen)</p>
+      </section>
+    </main>
+  </body>
+</html>

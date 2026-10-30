@@ -99,8 +99,19 @@ export function Contact() {
             </Magnetic>
             <div className="flex flex-col gap-3">
               <CopyEmailButton email={site.email} />
-              <a href={site.github} target="_blank" rel="noreferrer" className="pill pill-ghost">
+              <a href={site.cv.en} download="Magnus-Kaur-CV.pdf" className="pill pill-ghost justify-center">
+                Download CV <span aria-hidden>↓</span>
+              </a>
+              <a href={site.github} target="_blank" rel="noreferrer" className="pill pill-ghost justify-center">
                 GitHub <span aria-hidden>↗</span>
+              </a>
+              <a
+                href={site.cv.fi}
+                download="Magnus-Kaur-CV-suomi.pdf"
+                lang="fi"
+                className="underline-grow self-center font-mono text-[12px] text-ash"
+              >
+                CV suomeksi
               </a>
             </div>
           </div>

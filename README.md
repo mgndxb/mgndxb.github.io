@@ -49,9 +49,12 @@ src/lib/particles.ts  The WebGL particle field
 src/lib/sound.ts      The sound engine: ambient score and interface sounds
 src/lib/schedule.ts   The booking rule behind the schedule board
 public/work/          Screenshots of each product
+cv/                   The CV in English and Finnish, printed to PDF with `npm run cv`
 ```
 
 To change any text, edit the files in [`src/content/`](src/content/). Your email and links are in [`src/content/site.ts`](src/content/site.ts).
+
+To update the CV, edit [`cv/cv.en.html`](cv/cv.en.html) and [`cv/cv.fi.html`](cv/cv.fi.html), put your phone number in `cv/phone.txt` (never committed), run `npm run cv`, then copy the two files from `cv/out/public/` into `public/`. The copies with your phone number land in `cv/out/` for sending to employers.
 
 Everything respects `prefers-reduced-motion`: smooth scrolling, the intro and movement switch off, and the page stays fully readable. Lighthouse: 100 for accessibility, best practices and SEO.
 

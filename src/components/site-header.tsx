@@ -134,6 +134,13 @@ export function SiteHeader() {
           <div className="flex items-center gap-2">
             <SoundToggle />
             <a
+              href={site.cv.en}
+              download="Magnus-Kaur-CV.pdf"
+              className="hidden h-11 items-center gap-2 rounded-full border border-line bg-surface/60 px-4 text-[13px] whitespace-nowrap backdrop-blur-xl transition-colors duration-300 hover:border-white/30 lg:flex"
+            >
+              CV <span aria-hidden>↓</span>
+            </a>
+            <a
               href="#contact"
               className="hidden h-11 items-center gap-2.5 rounded-full border border-line bg-surface/60 px-4 text-[13px] whitespace-nowrap backdrop-blur-xl lg:flex"
             >
@@ -217,6 +224,14 @@ export function SiteHeader() {
           <a href={`mailto:${site.email}`} className="block text-[18px] font-medium">
             {site.email}
           </a>
+          <p className="flex gap-4 text-[14px] text-ash">
+            <a href={site.cv.en} download="Magnus-Kaur-CV.pdf" className="underline-grow">
+              Download CV
+            </a>
+            <a href={site.cv.fi} download="Magnus-Kaur-CV-suomi.pdf" lang="fi" className="underline-grow">
+              CV suomeksi
+            </a>
+          </p>
         </div>
       </div>
     </>
