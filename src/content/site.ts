@@ -3,8 +3,8 @@
  * (email, availability, links) never means touching a component.
  */
 export const site = {
-  /** Where the site lives. Change this to the .is-a.dev address once it's approved. */
-  url: "https://mgndxb.github.io",
+  /** Where the site lives: GitHub Pages with a custom domain (mgndxb.github.io redirects here). */
+  url: "https://magnus.is-a.dev",
   name: "Magnus Kaur",
   firstName: "Magnus",
   role: "Full-stack developer",

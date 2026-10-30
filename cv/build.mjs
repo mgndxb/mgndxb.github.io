@@ -4,7 +4,6 @@
 // The phone number lives in cv/phone.txt, which is never committed.
 //
 //   npm run cv
-//   SITE=magnus.is-a.dev npm run cv
 import { mkdir, readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 
@@ -12,7 +11,7 @@ import puppeteer from "puppeteer-core";
 
 const dir = fileURLToPath(new URL(".", import.meta.url));
 const browserPath = process.env.BROWSER ?? "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser";
-const site = process.env.SITE ?? "mgndxb.github.io";
+const site = process.env.SITE ?? "magnus.is-a.dev";
 const phone = (await readFile(`${dir}phone.txt`, "utf8").catch(() => "")).trim();
 
 if (!phone) {

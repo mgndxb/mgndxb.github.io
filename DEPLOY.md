@@ -1,5 +1,7 @@
 # Putting the site online
 
+**Done.** The site is live at `https://magnus.is-a.dev`, served by GitHub Pages from the `mgndxb.github.io` repository (the old address redirects). The name was registered in [is-a-dev/register#59249](https://github.com/is-a-dev/register/pull/59249). The steps below are kept as a record.
+
 Two stages. First, publish the site on GitHub Pages at `https://mgndxb.github.io`. Then, once it's live and finished, apply for a `.is-a.dev` name that points to it.
 
 ## 1. Publish on GitHub Pages
@@ -48,6 +50,6 @@ After your pull request is merged:
 
 1. In your `mgndxb.github.io` repository, go to **Settings → Pages → Custom domain**, enter your new `.is-a.dev` address and save.
 2. Wait for the DNS check to pass, then tick **Enforce HTTPS**.
-3. Update `sourceRepo` and any links in [`src/content/site.ts`](src/content/site.ts) if they've changed, then commit and push.
+3. Change `url` in [`src/content/site.ts`](src/content/site.ts) to the new address, reprint the CV with `npm run cv` and copy `cv/out/public/*` into `public/`, then commit and push.
 
 With a GitHub Actions deployment you set the custom domain in Settings. You don't need a `CNAME` file in the project.
