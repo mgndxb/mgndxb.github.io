@@ -1,0 +1,708 @@
+@import "tailwindcss";
+
+/*
+ * A night showroom: a near-black stage, bone-white type, and light that
+ * changes colour with whatever is on display. The three state colours mean
+ * the same thing everywhere on the site:
+ *   mint  = confirmed / live / strong
+ *   amber = in flight / in development / still learning
+ *   red   = refused
+ */
+@theme {
+  --color-void: #060607;
+  --color-surface: #0f0f12;
+  --color-surface-2: #17171b;
+  --color-surface-3: #212127;
+  --color-bone: #efede8;
+  --color-ash: #9d9b95;
+  --color-dim: #64635f;
+  --color-line: rgb(239 237 232 / 0.1);
+  --color-mint: #46e39b;
+  --color-amber: #ffbe55;
+  --color-red: #ff5a4a;
+
+  --font-display: var(--font-unbounded), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+@layer base {
+  html {
+    background: var(--color-void);
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--color-void);
+    color: var(--color-bone);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--color-bone);
+    color: var(--color-void);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-mint);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  img {
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+}
+
+@layer components {
+  .gutter {
+    padding-inline: clamp(1rem, 4vw, 3.5rem);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--color-ash);
+  }
+
+  .display {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    line-height: 0.92;
+  }
+
+  /* ---------- Film grain over everything ---------- */
+  .grain {
+    position: fixed;
+    inset: -50%;
+    z-index: 90;
+    pointer-events: none;
+    opacity: 0.07;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: grain 900ms steps(6) infinite;
+  }
+
+  /* ---------- Custom cursor ---------- */
+  html.has-cursor,
+  html.has-cursor * {
+    cursor: none !important;
+  }
+  .cursor-dot,
+  .cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* Above everything, the intro screen included: the native cursor is hidden while this is on. */
+    z-index: 400;
+    pointer-events: none;
+    border-radius: 999px;
+    opacity: 0;
+    transition: opacity 200ms ease;
+  }
+  html.cursor-visible .cursor-dot,
+  html.cursor-visible .cursor-ring {
+    opacity: 1;
+  }
+  .cursor-dot {
+    width: 6px;
+    height: 6px;
+    margin: -3px 0 0 -3px;
+    background: var(--color-bone);
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    margin: -17px 0 0 -17px;
+    border: 1px solid rgb(239 237 232 / 0.45);
+    transition:
+      width 300ms var(--ease-out-expo),
+      height 300ms var(--ease-out-expo),
+      margin 300ms var(--ease-out-expo),
+      background-color 300ms ease,
+      border-color 300ms ease,
+      opacity 200ms ease;
+  }
+  .cursor-ring[data-state="link"] {
+    width: 64px;
+    height: 64px;
+    margin: -32px 0 0 -32px;
+    border-color: rgb(239 237 232 / 0.8);
+  }
+  .cursor-ring[data-state="label"] {
+    width: 96px;
+    height: 96px;
+    margin: -48px 0 0 -48px;
+    background: var(--color-bone);
+    border-color: transparent;
+  }
+  .cursor-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--color-void);
+    opacity: 0;
+    transform: scale(0.6);
+    transition:
+      opacity 200ms ease,
+      transform 300ms var(--ease-out-expo);
+  }
+  .cursor-ring[data-state="label"] .cursor-label {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ---------- Buttons and links ---------- */
+  .pill {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    height: 52px;
+    padding: 0 1.4rem;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    isolation: isolate;
+    transition: transform 160ms var(--ease-out-strong);
+  }
+  .pill:active {
+    transform: scale(0.97);
+  }
+  .pill-solid {
+    background: var(--color-bone);
+    color: var(--color-void);
+  }
+  .pill-ghost {
+    border: 1px solid rgb(239 237 232 / 0.22);
+    color: var(--color-bone);
+  }
+  /* A fill that rises from below on hover. */
+  .pill::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: var(--pill-fill, var(--color-mint));
+    transform: translateY(101%);
+    transition: transform 500ms var(--ease-out-expo);
+  }
+  .pill-ghost {
+    --pill-fill: var(--color-bone);
+    transition:
+      transform 160ms var(--ease-out-strong),
+      color 300ms ease;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .pill:hover::before {
+      transform: translateY(0);
+    }
+    .pill-ghost:hover {
+      color: var(--color-void);
+    }
+  }
+
+  /* Text that rolls up to a copy of itself on hover. */
+  .roll {
+    position: relative;
+    display: inline-flex;
+    overflow: hidden;
+    line-height: 1.2;
+  }
+  .roll > span {
+    display: block;
+    transition: transform 520ms var(--ease-out-expo);
+  }
+  .roll > span + span {
+    position: absolute;
+    inset: 0;
+    transform: translateY(100%);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .roll-host:hover .roll > span:first-child {
+      transform: translateY(-100%);
+    }
+    .roll-host:hover .roll > span + span {
+      transform: none;
+    }
+  }
+
+  .underline-grow {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 600ms var(--ease-out-expo);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .underline-grow:hover {
+      background-size: 100% 1px;
+    }
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    height: 28px;
+    padding: 0 0.7rem;
+    border-radius: 999px;
+    border: 1px solid rgb(239 237 232 / 0.14);
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: rgb(239 237 232 / 0.8);
+    white-space: nowrap;
+  }
+
+  .status-dot {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: currentColor;
+  }
+  .status-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: currentColor;
+    animation: ping 2.2s var(--ease-out-strong) infinite;
+  }
+
+  /* ---------- Marquee ---------- */
+  .marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee var(--marquee-duration, 40s) linear infinite;
+  }
+  .marquee[data-reverse] {
+    animation-direction: reverse;
+  }
+
+  /* ---------- Device frames ---------- */
+  .browser {
+    position: relative;
+    border-radius: 14px;
+    background: #1a1a1e;
+    box-shadow:
+      0 0 0 1px rgb(255 255 255 / 0.08) inset,
+      0 50px 100px -30px rgb(0 0 0 / 0.8),
+      0 30px 60px -40px var(--accent, transparent);
+    overflow: hidden;
+  }
+  .phone {
+    position: relative;
+    border-radius: 2.6rem;
+    padding: 0.55rem;
+    background: linear-gradient(145deg, #2c2c32, #0c0c0e);
+    box-shadow:
+      0 0 0 1px rgb(255 255 255 / 0.1) inset,
+      0 40px 80px -20px rgb(0 0 0 / 0.85);
+  }
+  .phone-screen {
+    position: relative;
+    border-radius: 2.1rem;
+    overflow: hidden;
+    background: #000;
+    aspect-ratio: 390 / 844;
+  }
+  .phone-screen::before {
+    content: "";
+    position: absolute;
+    top: 0.55rem;
+    left: 50%;
+    z-index: 2;
+    width: 30%;
+    height: 1.35rem;
+    border-radius: 999px;
+    background: #000;
+    transform: translateX(-50%);
+  }
+
+  /* ---------- Spotlight tiles ---------- */
+  .spotlight {
+    position: relative;
+    isolation: isolate;
+  }
+  .spotlight::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: radial-gradient(
+      420px circle at var(--mx, 50%) var(--my, 50%),
+      rgb(239 237 232 / 0.09),
+      transparent 45%
+    );
+    opacity: 0;
+    transition: opacity 400ms ease;
+  }
+  .spotlight:hover::before {
+    opacity: 1;
+  }
+
+  /* ---------- Accordion ---------- */
+  .accordion-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 520ms var(--ease-out-expo);
+  }
+  .accordion-panel[data-open="true"] {
+    grid-template-rows: 1fr;
+  }
+  .accordion-panel > div {
+    min-height: 0;
+    overflow: hidden;
+  }
+  .accordion-icon {
+    transition: transform 420ms var(--ease-out-expo);
+  }
+  [aria-expanded="true"] .accordion-icon {
+    transform: rotate(135deg);
+  }
+
+  /* ---------- Schedule board ---------- */
+  .board {
+    background:
+      radial-gradient(120% 140% at 0% 0%, rgb(70 227 155 / 0.07), transparent 50%),
+      linear-gradient(180deg, rgb(255 255 255 / 0.04), rgb(255 255 255 / 0.015));
+    box-shadow:
+      0 0 0 1px rgb(255 255 255 / 0.08) inset,
+      0 40px 120px -40px rgb(0 0 0 / 0.9);
+    backdrop-filter: blur(16px);
+  }
+
+  .board-btn {
+    display: inline-flex;
+    align-items: center;
+    height: 38px;
+    padding: 0 0.95rem;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-bone);
+    background: rgb(255 255 255 / 0.07);
+    transition:
+      transform 160ms var(--ease-out-strong),
+      background-color 200ms ease;
+  }
+  .board-btn:active {
+    transform: scale(0.97);
+  }
+  .board-btn-strong {
+    background: var(--color-bone);
+    color: var(--color-void);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .board-btn:hover {
+      background: rgb(255 255 255 / 0.13);
+    }
+    .board-btn-strong:hover {
+      background: white;
+    }
+  }
+
+  .board-select {
+    height: 38px;
+    padding: 0 2.1rem 0 0.85rem;
+    border-radius: 999px;
+    background-color: rgb(255 255 255 / 0.07);
+    color: var(--color-bone);
+    font-size: 14px;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath stroke='%239d9b95' stroke-width='1.5' d='m1 1 4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.85rem center;
+  }
+
+  .lane {
+    position: relative;
+    height: 60px;
+    border-radius: 12px;
+    background-color: rgb(255 255 255 / 0.03);
+    background-image:
+      repeating-linear-gradient(to right, rgb(255 255 255 / 0.1) 0 1px, transparent 1px calc(100% / 9)),
+      repeating-linear-gradient(to right, rgb(255 255 255 / 0.04) 0 1px, transparent 1px calc(100% / 18));
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .booking {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-width: 0;
+    padding: 0 0.65rem;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: #04130c;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.15;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    z-index: 1;
+    transition:
+      top 300ms var(--ease-out-strong),
+      height 300ms var(--ease-out-strong),
+      background-color 220ms ease,
+      border-color 220ms ease,
+      color 220ms ease,
+      box-shadow 220ms ease;
+  }
+  @media (max-width: 639px) {
+    .booking {
+      padding: 0 0.3rem;
+      font-size: 11px;
+    }
+  }
+  .booking-time {
+    font-weight: 500;
+    opacity: 0.65;
+    font-variant-numeric: tabular-nums;
+  }
+  .booking[data-status="confirmed"] {
+    background-color: var(--color-mint);
+    box-shadow: 0 0 24px -6px rgb(70 227 155 / 0.6);
+  }
+  .booking[data-status="confirmed"]:active {
+    transform: scale(0.98);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .booking[data-status="confirmed"]:hover {
+      background-color: #74f0b6;
+    }
+  }
+  .booking[data-status="hold"] {
+    z-index: 2;
+    background-color: var(--color-amber);
+    background-image: repeating-linear-gradient(-45deg, rgb(0 0 0 / 0.1) 0 6px, transparent 6px 12px);
+    background-size: 17px 17px;
+    box-shadow: 0 0 24px -6px rgb(255 190 85 / 0.6);
+    animation:
+      hold-in 240ms var(--ease-out-strong) both,
+      stripes 600ms linear infinite;
+  }
+  .booking[data-status="refused"] {
+    z-index: 3;
+    background-color: var(--color-red);
+    box-shadow: 0 0 30px -4px rgb(255 90 74 / 0.8);
+    animation: refuse 1900ms var(--ease-out-strong) forwards;
+  }
+  .booking[data-status="refused-static"] {
+    background-color: var(--color-red);
+    box-shadow: 0 0 30px -4px rgb(255 90 74 / 0.8);
+  }
+  .booking[data-status="cancelled"] {
+    z-index: 0;
+    background: transparent;
+    border-style: dashed;
+    border-color: rgb(239 237 232 / 0.3);
+    color: var(--color-ash);
+    text-decoration: line-through;
+    pointer-events: none;
+  }
+  .booking[data-intro] {
+    animation: block-in 700ms var(--ease-out-expo) both;
+    transform-origin: left center;
+  }
+
+  .drag-preview {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+    border: 1.5px dashed rgb(255 255 255 / 0.75);
+    border-radius: 8px;
+    background: rgb(255 255 255 / 0.07);
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    pointer-events: none;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .log-entry {
+    animation: log-in 320ms var(--ease-out-strong) both;
+  }
+
+  /* ---------- Code tour ---------- */
+  .code-panel {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(8px);
+    transition:
+      opacity 300ms ease,
+      filter 300ms ease,
+      transform 500ms var(--ease-out-expo);
+  }
+  .code-panel[data-active="true"] {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+  .code-panel pre {
+    margin: 0;
+    padding: 1.25rem 0;
+    background: transparent !important;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.75;
+    overflow-x: auto;
+    counter-reset: line;
+  }
+  .code-panel code {
+    display: block;
+    min-width: max-content;
+  }
+  .code-panel .line {
+    display: inline-block;
+    width: 100%;
+    padding: 0 1.25rem 0 0;
+  }
+  .code-panel .line::before {
+    counter-increment: line;
+    content: counter(line);
+    display: inline-block;
+    width: 3rem;
+    padding-right: 1.1rem;
+    text-align: right;
+    color: rgb(157 155 149 / 0.45);
+  }
+  .code-panel .line.is-key {
+    background: rgb(70 227 155 / 0.1);
+    box-shadow: inset 2px 0 0 var(--color-mint);
+  }
+
+  .swap-label {
+    transition:
+      opacity 200ms ease,
+      filter 200ms ease;
+  }
+  .swap-label[data-swapping="true"] {
+    opacity: 0.4;
+    filter: blur(2px);
+  }
+
+  /* Hidden until GSAP reveals it; visible without JS or with reduced motion. */
+  .js-motion [data-fade] {
+    opacity: 0;
+  }
+}
+
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-6%, 4%); }
+  40% { transform: translate(5%, -6%); }
+  60% { transform: translate(-3%, 7%); }
+  80% { transform: translate(6%, 3%); }
+  100% { transform: translate(-4%, -5%); }
+}
+
+@keyframes ping {
+  0% { transform: scale(1); opacity: 0.7; }
+  80%, 100% { transform: scale(2.8); opacity: 0; }
+}
+
+@keyframes eq {
+  0% { transform: scaleY(0.25); }
+  100% { transform: scaleY(1); }
+}
+
+@keyframes scroll-cue {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(200%); }
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+@keyframes block-in {
+  from { opacity: 0; transform: scaleX(0.85); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes hold-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes stripes {
+  to { background-position: 17px 0; }
+}
+
+@keyframes refuse {
+  0% { transform: none; }
+  6% { transform: translateX(-4px); }
+  12% { transform: translateX(4px); }
+  18% { transform: translateX(-2px); }
+  24%, 72% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: translateY(14px); }
+}
+
+@keyframes refuse-fade {
+  0%, 72% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes log-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Reduced motion keeps colour and opacity changes that explain state, and drops movement. */
+@media (prefers-reduced-motion: reduce) {
+  .grain,
+  .marquee,
+  .status-dot::after,
+  [data-sound-toggle] span span {
+    animation: none !important;
+  }
+  .booking[data-intro],
+  .booking[data-status="hold"],
+  .log-entry {
+    animation: fade-in 200ms ease both;
+  }
+  .booking[data-status="refused"] {
+    animation: refuse-fade 1900ms ease forwards;
+  }
+  .accordion-panel,
+  .code-panel {
+    transition-property: opacity;
+    transform: none;
+    filter: none;
+  }
+}
