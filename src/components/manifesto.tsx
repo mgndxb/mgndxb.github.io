@@ -166,7 +166,7 @@ export function Manifesto() {
         <div className="mt-[clamp(2.5rem,6vh,4.5rem)] grid gap-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:items-end lg:gap-16">
           <p data-after className="max-w-[54ch] text-[clamp(1.08rem,1.45vw,1.3rem)] leading-relaxed text-bone/80">
             I&apos;m {site.firstName}, a developer in {site.city}. I build booking, payment and back-office systems for
-            real businesses, and six of them are live, taking real bookings and real money. I put the rules in the
+            real businesses. Six are live, and three take real card payments. I put the rules in the
             database, test them against the real thing and check them in production. Now I want a team that pushes me
             harder than my clients can.
           </p>

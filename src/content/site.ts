@@ -14,7 +14,7 @@ export const site = {
   email: "magnuskaur.dev@gmail.com",
   github: "https://github.com/mgndxb",
   githubHandle: "mgndxb",
-  availability: "Open to junior developer roles",
+  availability: "Available now for junior roles",
   workModes: "On-site, hybrid or remote",
   languages: "English, Finnish",
   now: "Rebuilding FlagSales from scratch",

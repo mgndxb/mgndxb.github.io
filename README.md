@@ -5,7 +5,7 @@ My personal site: every product I've shipped, what I'm good at, what I'm still l
 ## What's in it
 
 - **Hero.** My name drawn by thousands of WebGL particles that assemble on load, get pushed by the cursor and blow apart on scroll. The shader lives in [`src/lib/particles.ts`](src/lib/particles.ts).
-- **Showroom.** A pinned, sideways-scrolling gallery of seven live products. Each one gets a 3D browser window that scrolls through the real site, a phone mockup, and a background lit in that product's brand colour.
+- **Showroom.** A pinned, sideways-scrolling gallery of six live products. Each one gets a 3D browser window that scrolls through the real site, a phone mockup, and a background lit in that product's brand colour.
 - **Case study.** Defined PMU in depth, with a sticky stage that swaps between the booking flow, an animated payment diagram and the real test-suite numbers.
 - **Try to double-book.** An interactive schedule where overlapping requests are refused at the moment they're written, the same rule as the PostgreSQL exclusion constraint in my booking systems. The rule is in [`src/lib/schedule.ts`](src/lib/schedule.ts), with tests in [`src/lib/schedule.test.ts`](src/lib/schedule.test.ts).
 - **Sound.** A generative ambient score and interface sounds, all synthesised live with the Web Audio API (no audio files), all in one key. The intro's Enter button is the click browsers require before audio can play; visitors can enter without sound or mute any time. See [`src/lib/sound.ts`](src/lib/sound.ts).

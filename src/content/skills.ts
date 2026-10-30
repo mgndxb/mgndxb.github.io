@@ -18,10 +18,10 @@ import {
 } from "simple-icons";
 
 export const stats = [
-  { value: 8, suffix: "", label: "products and platforms I've built" },
-  { value: 6, suffix: "", label: "of them live, with real users and payments" },
+  { value: 7, suffix: "", label: "products and platforms I've built" },
+  { value: 6, suffix: "", label: "of them live, three taking real card payments" },
   { value: 2275, suffix: "", label: "automated tests and checks across two codebases" },
-  { value: 20, suffix: "", prefix: "~", label: "people use my internal tools at work" },
+  { value: 20, suffix: "", prefix: "~", label: "sellers log every sale in my system daily" },
 ];
 
 export interface Capability {
@@ -41,19 +41,19 @@ export const capabilities: Capability[] = [
   {
     title: "Payments",
     text: "Stripe deposits, signed webhooks, idempotent payment intents, automatic refunds and paid-plan checks. The server sets every price.",
-    proof: "Defined PMU, Coded for Beauty, CreatorMission",
+    proof: "Defined PMU, Coded for Beauty, Brow Ink",
     image: "/work/codedforbeauty-mobile-400.webp",
   },
   {
     title: "Auth & roles",
-    text: "Sign-in, sessions, role-based access, invitation tokens, OAuth with PKCE and revocable links that need no account.",
-    proof: "Ateliva, FlagSales, CreatorMission",
-    image: "/work/ateliva-mobile-400.webp",
+    text: "Sign-in, sessions, role-based access, PIN sign-in for shared phones, OAuth with PKCE and revocable links that need no account.",
+    proof: "FlagSales, CreatorMission, Defined PMU",
+    image: "/work/creatormission-mobile-400.webp",
   },
   {
     title: "Admin & internal tools",
     text: "Back-office apps the people running the business use every day: calendars, queues, client records, operations dashboards.",
-    proof: "Defined studio app, FlagSales, Ateliva portals",
+    proof: "Defined studio app, FlagSales, Lumos calendar",
     image: "/work/flagsales-mobile-400.webp",
   },
   {
@@ -208,6 +208,14 @@ export const faq = [
     a: "A junior developer role: full-stack, front-end or back-end. I'm in Helsinki, happy on-site, hybrid or remote, and I work in English and Finnish.",
   },
   {
+    q: "When can you start?",
+    a: "Right away. I'm in Helsinki and free now.",
+  },
+  {
+    q: "What did you do before coding?",
+    a: "Sales and operations. At a Helsinki field-sales company I went from seller to team lead to COO in six months, running a team of about 20: hiring, scheduling and day-to-day operations. The sales system I built for that team is still in use. Before that I trained and worked as a vehicle mechanic and drove delivery routes.",
+  },
+  {
     q: "You've shipped real products. Why junior?",
     a: "Because almost all of it was solo. I haven't had code review, senior engineers to learn from, or a big shared codebase. That's exactly what I'm after, and I'd rather be honest about it.",
   },
@@ -221,7 +229,7 @@ export const faq = [
   },
   {
     q: "What are you working on right now?",
-    a: "Rebuilding FlagSales from scratch, after auditing the old app and finding security and correctness problems. Business rules in the database, 707 tests against real Postgres. And sending this site to teams I'd like to join.",
+    a: "Rebuilding FlagSales from scratch. The team has used my first version every day for over a year, but when I audited it I found security and correctness problems. The new one puts the business rules in the database, with 707 tests against real Postgres. And sending this site to teams I'd like to join.",
   },
   {
     q: "What are you best at?",

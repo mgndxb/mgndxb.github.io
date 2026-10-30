@@ -231,7 +231,7 @@ export function Showroom() {
           <div className="max-w-[34ch] pb-[1.2vw]">
             <p className="font-mono text-[12px] text-ash">({pad(showroom.length)}) live products</p>
             <p className="mt-3 text-[17px] text-bone/80">
-              In production for real businesses. Keep scrolling to walk through each one, live pages included.
+              Five run real businesses, one I built to practise. Keep scrolling to walk through each one, live pages included.
             </p>
           </div>
         </div>

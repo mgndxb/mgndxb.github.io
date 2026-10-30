@@ -90,7 +90,7 @@ export const showroom: ShowroomProject[] = [
     slug: "creatormission",
     name: "CreatorMission",
     kind: "Browser video editor",
-    tagline: "A clip editor that keeps the campaign brief beside the edit and checks the clip before export.",
+    tagline: "Built to practise, then shipped anyway: a clip editor that keeps the campaign brief beside the edit.",
     points: [
       "Local-first: the video never leaves the creator's device",
       "Checks duration, captions, mentions and CTA against the brief",
@@ -106,27 +106,6 @@ export const showroom: ShowroomProject[] = [
       mobile: "/work/creatormission-mobile.webp",
     },
     theme: { bg: "#0b0a0c", accent: "#ff6a2c" },
-  },
-  {
-    slug: "ateliva",
-    name: "Ateliva",
-    kind: "Team performance software",
-    tagline: "Results, targets, rankings and competitions for teams whose work can be measured.",
-    points: [
-      "Public site plus partner and admin portals behind sign-in",
-      "Database-backed state transitions with invitation tokens",
-      "Transactional email, deployed and tested in production",
-    ],
-    stack: ["Next.js", "TypeScript", "PostgreSQL", "Supabase"],
-    status: "Live",
-    url: "https://ateliva.com",
-    urlLabel: "ateliva.com",
-    images: {
-      full: "/work/ateliva-full.webp",
-      fullHeight: 6000,
-      mobile: "/work/ateliva-mobile.webp",
-    },
-    theme: { bg: "#111214", accent: "#ff7a4d" },
   },
   {
     slug: "lumos-energia",
@@ -152,15 +131,15 @@ export const showroom: ShowroomProject[] = [
   {
     slug: "flagsales",
     name: "FlagSales",
-    kind: "Field-sales operations",
-    tagline: "Internal tools a Finnish field-sales team of about 20 people works in, now being rebuilt from scratch.",
+    kind: "Sales system for a field-sales team",
+    tagline: "About 20 sellers counted their sales by reading a WhatsApp chat. I built the system that replaced it, and it got me promoted to COO.",
     points: [
-      "I audited the legacy app, found security and correctness problems, and started over",
-      "Auth, shifts, sales logging and role-based access, enforced in the database",
-      "707 tests that run the real SQL migrations against Postgres",
+      "Each seller signs in with a name and PIN and logs a sale from a product list",
+      "Counts who sold what, and when. In daily use for over a year",
+      "Now rebuilding my first version: roles enforced in the database, 707 tests",
     ],
     stack: ["Next.js", "TypeScript", "PostgreSQL", "Supabase"],
-    status: "In development",
+    status: "Live",
     url: "https://flagsales.fi",
     urlLabel: "flagsales.fi",
     images: {
