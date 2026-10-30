@@ -43,3 +43,4 @@ next-env.d.ts
 # CV: printed PDFs and the phone number stay local
 /cv/out/
 /cv/phone.txt
+/linkedin/

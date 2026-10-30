@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: "/" },
+  // Kept out of search results on purpose: employers get the link from the CV or an application.
+  // Link previews (og.jpg) still work when the link is shared.
+  robots: { index: false, follow: false, googleBot: { index: false, follow: false, noimageindex: true } },
   openGraph: {
     title,
     description,
