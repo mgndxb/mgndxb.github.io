@@ -63,6 +63,18 @@ export const capabilities: Capability[] = [
     image: "/work/lumos-mobile-400.webp",
   },
   {
+    title: "AI features with guardrails",
+    text: "Agents that call tools against real data, with the rules that matter enforced in code and evals that test how the model behaves.",
+    proof: "AI Receptionist",
+    image: "/work/ai-receptionist-mobile-400.webp",
+  },
+  {
+    title: "Real-time data",
+    text: "Live feeds streamed into the browser, my own MQTT client, and hundreds of moving points kept smooth on a WebGL map.",
+    proof: "Helsinki Live",
+    image: "/work/helsinki-live-mobile-400.webp",
+  },
+  {
     title: "Sites people remember",
     text: "Designed, fast marketing sites with booking built in, and motion that serves the content. Like this one.",
     proof: "Defined PMU, Brow Ink, Coded for Beauty",
@@ -115,6 +127,7 @@ export const toolbox: ToolTier[] = [
       { name: "Vitest", icon: siVitest, note: "Unit and integration tests" },
       { name: "PGlite", note: "Real Postgres in tests" },
       { name: "MapLibre", icon: siMaplibre, note: "Self-hosted maps" },
+      { name: "AI SDK", note: "Agents, tools and streaming" },
       { name: "GSAP", note: "The motion on this site" },
     ],
   },
@@ -229,7 +242,7 @@ export const faq = [
   },
   {
     q: "What are you working on right now?",
-    a: "Rebuilding FlagSales from scratch. The team has used my first version every day for over a year, but when I audited it I found security and correctness problems. The new one puts the business rules in the database, with 707 tests against real Postgres. And sending this site to teams I'd like to join.",
+    a: "Projects that show range beyond client work, each one live in the Lab above: every HSL vehicle on a 3D map straight from the raw feed, a rebuild of my FlagSales app where PostgreSQL enforces every rule, and an AI receptionist whose booking rules live in code and are tested with evals. And sending this site to teams I'd like to join.",
   },
   {
     q: "What are you best at?",

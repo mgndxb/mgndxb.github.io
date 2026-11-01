@@ -17,7 +17,7 @@ export const site = {
   availability: "Available now for junior roles",
   workModes: "On-site, hybrid or remote",
   languages: "English, Finnish",
-  now: "Rebuilding FlagSales from scratch",
+  now: "Building Lab projects you can try",
   /** Printed from cv/ with `npm run cv` (the public copies, without a phone number). */
   cv: { en: "/magnus-kaur-cv.pdf", fi: "/magnus-kaur-cv-suomi.pdf" },
   sourceRepo: "https://github.com/mgndxb/mgndxb.github.io",

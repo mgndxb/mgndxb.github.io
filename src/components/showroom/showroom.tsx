@@ -225,7 +225,7 @@ export function Showroom() {
       <div className="gutter pt-[clamp(6rem,14vh,10rem)] pb-[clamp(3rem,8vh,6rem)]">
         <Eyebrow>Selected work</Eyebrow>
         <div className="mt-6 flex flex-wrap items-end justify-between gap-x-10 gap-y-6">
-          <SplitReveal by="chars" className="display text-[clamp(3.6rem,13.5vw,14rem)] font-bold">
+          <SplitReveal by="chars" className="display text-[clamp(3rem,13vw,14rem)] font-bold">
             Showroom
           </SplitReveal>
           <div className="max-w-[34ch] pb-[1.2vw]">
@@ -267,7 +267,7 @@ export function Showroom() {
                     <span className="h-px w-10 bg-white/20" aria-hidden />
                     <span className="text-ash">{project.kind}</span>
                   </div>
-                  <h3 className="display mt-6 text-[clamp(2.6rem,5.4vw,5.8rem)] font-bold">{project.name}</h3>
+                  <h3 className="display mt-6 text-[clamp(1.7rem,8vw,2.6rem)] font-bold md:text-[clamp(2.6rem,5.4vw,5.8rem)]">{project.name}</h3>
                   <p className="mt-6 max-w-[40ch] text-[clamp(1.05rem,1.3vw,1.2rem)] leading-relaxed text-bone/85">
                     {project.tagline}
                   </p>

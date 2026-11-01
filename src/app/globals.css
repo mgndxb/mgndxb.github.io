@@ -166,6 +166,10 @@
     opacity: 1;
     transform: none;
   }
+  /* The dot inverts what's under it, so it would scramble the label's middle letters. */
+  html[data-cursor-state="label"] .cursor-dot {
+    opacity: 0;
+  }
 
   /* ---------- Buttons and links ---------- */
   .pill {
@@ -704,5 +708,19 @@
     transition-property: opacity;
     transform: none;
     filter: none;
+  }
+}
+
+/* Lab cards: the coloured stage behind a framed app recording. */
+@layer components {
+  .lab-stage {
+    background:
+      radial-gradient(60% 55% at 50% 50%, color-mix(in oklab, var(--glow) 38%, transparent), transparent 75%),
+      radial-gradient(70% 80% at 100% 0%, color-mix(in oklab, var(--glow) 45%, transparent), transparent 70%),
+      radial-gradient(60% 70% at 0% 100%, color-mix(in oklab, var(--glow) 28%, transparent), transparent 72%),
+      #141116;
+  }
+  .lab-stage .browser {
+    --accent: color-mix(in oklab, var(--glow) 60%, transparent);
   }
 }

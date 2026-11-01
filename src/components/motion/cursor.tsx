@@ -41,13 +41,14 @@ export function Cursor() {
 
       const target = event.target as Element | null;
       const labelled = target?.closest<HTMLElement>("[data-cursor]");
-      if (labelled) {
-        label!.textContent = labelled.dataset.cursor ?? "";
-        ring!.dataset.state = "label";
-      } else if (target?.closest(INTERACTIVE)) {
-        ring!.dataset.state = "link";
+      const state = labelled ? "label" : target?.closest(INTERACTIVE) ? "link" : null;
+      if (labelled) label!.textContent = labelled.dataset.cursor ?? "";
+      if (state) {
+        ring!.dataset.state = state;
+        root.dataset.cursorState = state;
       } else {
         delete ring!.dataset.state;
+        delete root.dataset.cursorState;
       }
     }
 
@@ -62,6 +63,7 @@ export function Cursor() {
 
     return () => {
       root.classList.remove("has-cursor", "cursor-visible");
+      delete root.dataset.cursorState;
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerdown", press);
       window.removeEventListener("pointerup", release);

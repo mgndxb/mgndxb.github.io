@@ -136,7 +136,7 @@ export const showroom: ShowroomProject[] = [
     points: [
       "Each seller signs in with a name and PIN and logs a sale from a product list",
       "Counts who sold what, and when. In daily use for over a year",
-      "Now rebuilding my first version: roles enforced in the database, 707 tests",
+      "Started a rebuild with the rules in the database and 707 tests. A demo is in the Lab below",
     ],
     stack: ["Next.js", "TypeScript", "PostgreSQL", "Supabase"],
     status: "Live",
@@ -163,6 +163,10 @@ export interface LabProject {
   url: string;
   source: string;
   image: { src: string; small: string; alt: string };
+  /** A short recorded loop of the real app, played while the card is on screen. */
+  video?: { webm: string; mp4: string; poster: string };
+  /** Shows the media inside a browser window on a coloured stage, for light-themed apps. */
+  frame?: { url: string; glow: string };
 }
 
 export const lab: LabProject[] = [
@@ -184,6 +188,7 @@ export const lab: LabProject[] = [
       small: "/work/helsinki-live-800.webp",
       alt: "Helsinki Live: glowing buses, trams and trains moving through a dark 3D model of central Helsinki",
     },
+    video: { webm: "/work/helsinki-live.webm", mp4: "/work/helsinki-live.mp4", poster: "/work/helsinki-live-poster.webp" },
   },
   {
     name: "FlagSales Live",
@@ -222,6 +227,8 @@ export const lab: LabProject[] = [
       small: "/work/ai-receptionist-800.webp",
       alt: "AI Receptionist: a chat where the studio's AI holds a lash lift, next to the studio's calendar and the list of tool calls it made",
     },
+    video: { webm: "/work/ai-receptionist.webm", mp4: "/work/ai-receptionist.mp4", poster: "/work/ai-receptionist-poster.webp" },
+    frame: { url: "magnus.is-a.dev/ai-receptionist", glow: "#cf2458" },
   },
 ];
 

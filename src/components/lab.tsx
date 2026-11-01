@@ -1,13 +1,104 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element -- static export serves these images as-is */
-import { useRef } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 
-import { lab } from "@/content/projects";
+import { lab, type LabProject } from "@/content/projects";
 import { gsap, prefersReducedMotion, useGSAP } from "@/lib/motion";
 
 import { Magnetic } from "./motion/magnetic";
 import { SplitReveal } from "./motion/split-reveal";
+
+/** A recorded loop of the real app. It only plays while on screen, and never for reduced motion. */
+function LoopVideo({ video, className = "" }: { video: NonNullable<LabProject["video"]>; className?: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || prefersReducedMotion()) return;
+    el.muted = true;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) el.play().catch(() => undefined);
+        else el.pause();
+      },
+      { threshold: 0.2 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <video
+      ref={ref}
+      muted
+      loop
+      playsInline
+      preload="none"
+      poster={video.poster}
+      aria-hidden
+      className={className}
+    >
+      <source src={video.webm} type="video/webm" />
+      <source src={video.mp4} type="video/mp4" />
+    </video>
+  );
+}
+
+function LabMedia({ project }: { project: LabProject }) {
+  const { video, frame, image } = project;
+
+  if (video && frame) {
+    // Light apps float in a browser window on a coloured stage, so they read as
+    // a product shot rather than a cut-off screenshot.
+    return (
+      <div className="lab-stage absolute inset-0" style={{ "--glow": frame.glow } as CSSProperties}>
+        <div data-lab-shot className="absolute inset-x-[6%] top-1/2 -translate-y-1/2">
+          <div className="transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:-translate-y-2">
+            <div className="browser">
+              <div className="flex h-8 items-center gap-3 border-b border-white/[0.06] bg-[#141417] px-3.5">
+                <span className="flex gap-1.5" aria-hidden>
+                  <span className="size-2 rounded-full bg-white/15" />
+                  <span className="size-2 rounded-full bg-white/15" />
+                  <span className="size-2 rounded-full bg-white/15" />
+                </span>
+                <span className="flex h-5 items-center rounded-md bg-white/[0.06] px-3 font-mono text-[10.5px] text-ash">
+                  {frame.url}
+                </span>
+              </div>
+              <LoopVideo video={video} className="block aspect-[16/10] w-full bg-[#ecedf0] object-cover" />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (video) {
+    return (
+      <div data-lab-shot className="absolute inset-0">
+        <LoopVideo
+          video={video}
+          className="h-full w-full object-cover transition-[filter] duration-700 group-hover:brightness-110"
+        />
+      </div>
+    );
+  }
+
+  return (
+    <img
+      data-lab-shot
+      src={image.src}
+      srcSet={`${image.small} 800w, ${image.src} 1600w`}
+      sizes="(min-width: 1024px) 60vw, 100vw"
+      width={1600}
+      height={1000}
+      alt={image.alt}
+      loading="lazy"
+      className="h-full w-full object-cover transition-[filter] duration-700 group-hover:brightness-110"
+    />
+  );
+}
 
 /**
  * Projects built to show range beyond client work. Each one is live,
@@ -105,11 +196,7 @@ export function Lab() {
                 </ul>
                 <div className="mt-auto flex flex-wrap items-center gap-5 pt-10">
                   <Magnetic strength={0.35}>
-                    <a
-                      href={project.url}
-                      className="pill pill-solid"
-                      data-cursor="Open"
-                    >
+                    <a href={project.url} className="pill pill-solid">
                       Open it live <span aria-hidden>↗</span>
                     </a>
                   </Magnetic>
@@ -126,21 +213,12 @@ export function Lab() {
 
               <a
                 href={project.url}
-                className={`relative block min-h-[260px] overflow-hidden border-t border-line lg:border-t-0 ${flipped ? "lg:order-1 lg:border-r" : "lg:border-l"}`}
-                aria-label={`Open ${project.name}`}
+                className={`relative block overflow-hidden border-t border-line lg:border-t-0 ${project.video ? "aspect-[16/10] lg:aspect-auto lg:min-h-[440px]" : "min-h-[260px]"} ${flipped ? "lg:order-1 lg:border-r" : "lg:border-l"}`}
+                aria-label={`Open ${project.name}: ${project.image.alt}`}
                 tabIndex={-1}
+                data-cursor="Open live"
               >
-                <img
-                  data-lab-shot
-                  src={project.image.src}
-                  srcSet={`${project.image.small} 800w, ${project.image.src} 1600w`}
-                  sizes="(min-width: 1024px) 60vw, 100vw"
-                  width={1600}
-                  height={1000}
-                  alt={project.image.alt}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-[filter] duration-700 group-hover:brightness-110"
-                />
+                <LabMedia project={project} />
               </a>
             </li>
           );
