@@ -12,6 +12,7 @@ import { Marquee } from "@/components/marquee";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { Preloader } from "@/components/preloader";
 import { Process } from "@/components/process";
+import { Quotes } from "@/components/quotes";
 import { Showroom } from "@/components/showroom/showroom";
 import { SiteHeader } from "@/components/site-header";
 import { Toolbox } from "@/components/toolbox";
@@ -30,6 +31,7 @@ export default function Home() {
         <Hero />
         <Manifesto />
         <Showroom />
+        <Quotes />
         <Lab />
         <AlsoBuilt />
         <CaseStudy />
