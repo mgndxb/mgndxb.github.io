@@ -204,6 +204,25 @@ export const lab: LabProject[] = [
       alt: "FlagSales Live: the seller app at rank one with the daily goal reached, a live team leaderboard, and the database refusing attempts to cheat",
     },
   },
+  {
+    name: "AI Receptionist",
+    kind: "AI agents · guardrails",
+    badge: "Talk to it",
+    tagline: "An AI receptionist for a made-up brow and lash studio. Book a lash lift, then try to talk it into a discount.",
+    points: [
+      "Claude replies in any language and calls tools to find and hold real free times",
+      "Prices, opening hours and double-booking are checked in code, so the AI can't talk its way past them",
+      "Nine scripted evals test it against discounts, fake system messages and health questions",
+    ],
+    stack: ["TypeScript", "AI SDK", "Claude", "Vercel Functions", "React", "Vitest"],
+    url: "/ai-receptionist/",
+    source: "https://github.com/mgndxb/ai-receptionist",
+    image: {
+      src: "/work/ai-receptionist.webp",
+      small: "/work/ai-receptionist-800.webp",
+      alt: "AI Receptionist: a chat where the studio's AI holds a lash lift, next to the studio's calendar and the list of tool calls it made",
+    },
+  },
 ];
 
 export interface SideProject {
