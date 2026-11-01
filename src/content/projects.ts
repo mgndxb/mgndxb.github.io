@@ -155,6 +155,8 @@ export const showroom: ShowroomProject[] = [
 export interface LabProject {
   name: string;
   kind: string;
+  /** The live label on the card, e.g. "Live data". */
+  badge: string;
   tagline: string;
   points: string[];
   stack: string[];
@@ -167,6 +169,7 @@ export const lab: LabProject[] = [
   {
     name: "Helsinki Live",
     kind: "Real-time data · maps",
+    badge: "Live data",
     tagline: "Every HSL bus, tram, metro, train and ferry, moving live on a 3D map of Helsinki.",
     points: [
       "Reads HSL's open feed directly: around 800 position updates a second",
@@ -180,6 +183,25 @@ export const lab: LabProject[] = [
       src: "/work/helsinki-live.webp",
       small: "/work/helsinki-live-800.webp",
       alt: "Helsinki Live: glowing buses, trams and trains moving through a dark 3D model of central Helsinki",
+    },
+  },
+  {
+    name: "FlagSales Live",
+    kind: "Databases · security",
+    badge: "Try it",
+    tagline: "Log a sale, then try to cheat. A rebuild of the sales app I made for a field-sales team, with made-up data.",
+    points: [
+      "Real PostgreSQL 18 runs in your browser and owns every rule",
+      "The app is a role that can't touch a table, set a price or read a PIN",
+      "Five cheats to try, each refused by the database with the query shown",
+    ],
+    stack: ["TypeScript", "React", "PostgreSQL", "PGlite", "pgcrypto", "Vitest"],
+    url: "/flagsales-live/",
+    source: "https://github.com/mgndxb/flagsales-live",
+    image: {
+      src: "/work/flagsales-live.webp",
+      small: "/work/flagsales-live-800.webp",
+      alt: "FlagSales Live: the seller app at rank one with the daily goal reached, a live team leaderboard, and the database refusing attempts to cheat",
     },
   },
 ];
