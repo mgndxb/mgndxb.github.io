@@ -44,7 +44,9 @@ export function Preloader() {
         return;
       }
 
-      const counter = root.current!.querySelector<HTMLElement>("[data-count]")!;
+      // Change the digits in place: replacing the text node on every frame makes the browser
+      // treat each number as new content, which pushed the page's measured load time to the end of the count.
+      const digits = root.current!.querySelector<HTMLElement>("[data-count]")!.firstChild as Text;
       const progress = { value: 0 };
       gsap.set("[data-enter]", { autoAlpha: 0, y: 40 });
 
@@ -58,7 +60,7 @@ export function Preloader() {
             duration: 1.15,
             ease: "power2.inOut",
             onUpdate: () => {
-              counter.textContent = String(Math.round(progress.value)).padStart(3, "0");
+              digits.data = String(Math.round(progress.value)).padStart(3, "0");
             },
           },
           0.1,

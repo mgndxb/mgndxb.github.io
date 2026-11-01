@@ -1,7 +1,7 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element -- static export serves these images as-is */
-import { useEffect, useRef, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 
 import { lab, type LabProject } from "@/content/projects";
 import { gsap, prefersReducedMotion, useGSAP } from "@/lib/motion";
@@ -12,20 +12,35 @@ import { SplitReveal } from "./motion/split-reveal";
 /** A recorded loop of the real app. It only plays while on screen, and never for reduced motion. */
 function LoopVideo({ video, className = "" }: { video: NonNullable<LabProject["video"]>; className?: string }) {
   const ref = useRef<HTMLVideoElement>(null);
+  // Even the poster waits until the card is a screen or so away, so it never competes with the top of the page.
+  const [near, setNear] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el || prefersReducedMotion()) return;
+    if (!el) return;
+    const approach = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+        setNear(true);
+        approach.disconnect();
+      },
+      { rootMargin: "1200px 0px" },
+    );
+    approach.observe(el);
+    if (prefersReducedMotion()) return () => approach.disconnect();
     el.muted = true;
-    const observer = new IntersectionObserver(
+    const visible = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) el.play().catch(() => undefined);
         else el.pause();
       },
       { threshold: 0.2 },
     );
-    observer.observe(el);
-    return () => observer.disconnect();
+    visible.observe(el);
+    return () => {
+      approach.disconnect();
+      visible.disconnect();
+    };
   }, []);
 
   return (
@@ -35,7 +50,7 @@ function LoopVideo({ video, className = "" }: { video: NonNullable<LabProject["v
       loop
       playsInline
       preload="none"
-      poster={video.poster}
+      poster={near ? video.poster : undefined}
       aria-hidden
       className={className}
     >
