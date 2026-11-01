@@ -10,6 +10,7 @@ import { SoundToggle } from "./sound";
 
 const links = [
   { href: "#work", label: "Work" },
+  { href: "#lab", label: "Lab" },
   { href: "#skills", label: "Skills" },
   { href: "#stack", label: "Stack" },
   { href: "#faq", label: "FAQ" },

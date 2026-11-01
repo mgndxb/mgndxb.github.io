@@ -1,4 +1,5 @@
 import { AlsoBuilt } from "@/components/also-built";
+import { Lab } from "@/components/lab";
 import { Capabilities } from "@/components/capabilities";
 import { CaseStudy } from "@/components/case-study";
 import { Contact } from "@/components/contact";
@@ -29,6 +30,7 @@ export default function Home() {
         <Hero />
         <Manifesto />
         <Showroom />
+        <Lab />
         <AlsoBuilt />
         <CaseStudy />
         <Engine />

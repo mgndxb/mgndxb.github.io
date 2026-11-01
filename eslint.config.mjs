@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Side projects with their own repos and tooling.
+    "labs/**",
   ]),
 ]);
 

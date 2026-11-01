@@ -151,6 +151,39 @@ export const showroom: ShowroomProject[] = [
   },
 ];
 
+/** Things built to show range, each one open to try right now. */
+export interface LabProject {
+  name: string;
+  kind: string;
+  tagline: string;
+  points: string[];
+  stack: string[];
+  url: string;
+  source: string;
+  image: { src: string; small: string; alt: string };
+}
+
+export const lab: LabProject[] = [
+  {
+    name: "Helsinki Live",
+    kind: "Real-time data · maps",
+    tagline: "Every HSL bus, tram, metro, train and ferry, moving live on a 3D map of Helsinki.",
+    points: [
+      "Reads HSL's open feed directly: around 800 position updates a second",
+      "My own MQTT client over WebSocket, about 200 lines, tested byte for byte",
+      "Click a vehicle to follow it, or colour the whole city by delay",
+    ],
+    stack: ["TypeScript", "React", "Vite", "MapLibre", "WebGL", "Vitest"],
+    url: "/helsinki-live/",
+    source: "https://github.com/mgndxb/helsinki-live",
+    image: {
+      src: "/work/helsinki-live.webp",
+      small: "/work/helsinki-live-800.webp",
+      alt: "Helsinki Live: glowing buses, trams and trains moving through a dark 3D model of central Helsinki",
+    },
+  },
+];
+
 export interface SideProject {
   name: string;
   kind: string;

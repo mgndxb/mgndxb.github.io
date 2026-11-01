@@ -44,3 +44,5 @@ next-env.d.ts
 /cv/out/
 /cv/phone.txt
 /linkedin/
+/applications/
+/labs/
