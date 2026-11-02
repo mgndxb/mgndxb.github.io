@@ -130,6 +130,10 @@ export function Contact() {
             </a>
             <span className="text-dim"> / </span>© 2026 {site.name}
           </p>
+          <p className="text-dim md:col-span-3">
+            When you visit, my phone gets a notification with your rough city and the site that linked you here.
+            Nothing is stored.
+          </p>
         </footer>
       </div>
     </section>
