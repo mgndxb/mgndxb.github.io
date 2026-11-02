@@ -7,10 +7,10 @@ import { Engine } from "@/components/engine";
 import { Faq } from "@/components/faq";
 import { Hero } from "@/components/hero/hero";
 import { Honest } from "@/components/honest";
+import { Intro } from "@/components/intro";
 import { Manifesto } from "@/components/manifesto";
 import { Marquee } from "@/components/marquee";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
-import { Preloader } from "@/components/preloader";
 import { Process } from "@/components/process";
 import { Quotes } from "@/components/quotes";
 import { Showroom } from "@/components/showroom/showroom";
@@ -21,7 +21,7 @@ export default function Home() {
   // The intro and smooth scrolling belong to the home page; other pages (the 404) load plainly.
   return (
     <>
-      <Preloader />
+      <Intro />
       <SmoothScroll />
       <a href="#main" className="pill pill-solid sr-only fixed top-4 left-4 z-[300] focus:not-sr-only">
         Skip to content

@@ -6,7 +6,7 @@ import { gsap, onIntro, prefersReducedMotion, SplitText, useGSAP } from "@/lib/m
 
 /**
  * Text that rises line by line out of a mask, either when it scrolls into view
- * or (with `onIntro`) when the preloader hands over.
+ * or (with `onIntro`) when the page starts its opening.
  */
 export function SplitReveal({
   as: Tag = "h2",

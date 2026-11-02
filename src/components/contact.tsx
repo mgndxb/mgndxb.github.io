@@ -131,8 +131,8 @@ export function Contact() {
             <span className="text-dim"> / </span>© 2026 {site.name}
           </p>
           <p className="text-dim md:col-span-3">
-            When you visit, my phone gets a notification with your rough city and the site that linked you here.
-            Nothing is stored.
+            Privacy: no cookies and nothing stored. I only get a basic visit notice with a rough city and the site
+            that linked here.
           </p>
         </footer>
       </div>

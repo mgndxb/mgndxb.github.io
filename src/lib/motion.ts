@@ -23,7 +23,7 @@ export const motionState: { lenis: Lenis | null; introDone: boolean } = {
 
 const introListeners = new Set<() => void>();
 
-/** Runs `callback` once the preloader hands over to the page (immediately if it already has). */
+/** Runs `callback` once the page starts its opening (immediately if it already has). */
 export function onIntro(callback: () => void): () => void {
   if (motionState.introDone) {
     callback();
@@ -37,9 +37,8 @@ export function finishIntro() {
   if (motionState.introDone) return;
   motionState.introDone = true;
 
-  // GSAP runs timeline callbacks inside the context that created the timeline. Deferring
-  // gets the listeners out of the preloader's context, so their animations aren't
-  // reverted when the preloader unmounts.
+  // Deferring runs the listeners outside any GSAP context the caller is in, so their
+  // animations aren't reverted along with it.
   window.setTimeout(() => {
     introListeners.forEach((callback) => {
       // One failing listener must not leave the rest of the page hidden.

@@ -71,28 +71,26 @@ export function SoundEffects() {
       sound.setVisible(document.visibilityState === "visible");
     }
 
-    // Browsers need a gesture before audio can start, so a returning visitor who left sound
-    // on hears it from their first click or key press (unless that click is the toggle itself).
+    // Sound is on by default, but browsers need a gesture before audio can start, so the score
+    // blooms in on the first click, tap or key press (unless that click is the toggle itself).
+    // A finger that only scrolls isn't a gesture, so keep listening until a real one arrives.
+    const gestures = ["pointerdown", "pointerup", "touchend", "keydown"] as const;
     function resume(event: Event) {
       if ((event.target as Element | null)?.closest("[data-sound-toggle]")) return;
-      window.removeEventListener("pointerdown", resume, true);
-      window.removeEventListener("keydown", resume, true);
-      if (sound.wanted) void sound.enable();
+      if (navigator.userActivation?.isActive === false) return;
+      gestures.forEach((type) => window.removeEventListener(type, resume, true));
+      if (sound.wanted) void sound.enable({ bloom: true });
     }
 
     if (isFinePointer()) window.addEventListener("pointerover", onOver, { passive: true });
     window.addEventListener("pointerdown", onDown, { passive: true });
     document.addEventListener("visibilitychange", onVisibility);
-    if (sound.wanted) {
-      window.addEventListener("pointerdown", resume, true);
-      window.addEventListener("keydown", resume, true);
-    }
+    if (sound.wanted) gestures.forEach((type) => window.addEventListener(type, resume, true));
 
     return () => {
       window.removeEventListener("pointerover", onOver);
       window.removeEventListener("pointerdown", onDown);
-      window.removeEventListener("pointerdown", resume, true);
-      window.removeEventListener("keydown", resume, true);
+      gestures.forEach((type) => window.removeEventListener(type, resume, true));
       document.removeEventListener("visibilitychange", onVisibility);
     };
   }, []);

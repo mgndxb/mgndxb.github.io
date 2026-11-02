@@ -46,9 +46,6 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html lang="en" className={`${unbounded.variable} ${geist.variable} ${geistMono.variable}`}>
       <body>
-        <noscript>
-          <style>{`[data-preloader]{display:none!important}`}</style>
-        </noscript>
         <Cursor />
         <SoundEffects />
         <SoundTuner />
